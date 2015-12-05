@@ -1,34 +1,28 @@
 function ask_page_data() {
-    // call content script: ask js+css nodes
-    $(document.body).append('<div>eric</div>');
-    if (window.chrome && chrome.tabs) {
-        var tabid = location.hash.slice(1);
-        tabid = parseInt(tabid);
-        console.log(window.localStorage);
-        var url = window.localStorage[tabid];
-        $(document.body).append('<div>'+url+'</div>');
+  var key = 'ef2e038a54184a57a182c1ed5b38fa33';
+  var tabid = location.hash.slice(1);
+  tabid = parseInt(tabid);
+  var content = JSON.parse(window.localStorage['parsedData']);
 
-        // ask to return onclick handlers too?
-        // var show_onclick = get_config("onclick");
-        // chrome.tabs.sendMessage(tabid, {"showonclick":show_onclick},
-        //                         data_received);
-    } else {
-        // while developing
-        data_received(debugdata);
-    }
+  $('title').html(content.title);
+  // var html = '<!DOCTYPE html><html><head><title>' + content.title + '</title>' + '<meta charset="utf-8">' + '</head><body>';
+  var html = '<h1>' + content.title + '</h1>';
+  html += content.content; 
+  // html += '</body></html>';
+  $('#parsed').html(html);
 }
 
 ask_page_data();
 
-function data_received(resp) {
-    var url = remove_url_prefix(resp.url);
-    $(document.body).append('<div>'+url+"</div>");
-}
+// function data_received(resp) {
+//   var url = remove_url_prefix(resp.url);
+//   $(document.body).append('<div>'+url+"</div>");
+// }
 
-function remove_url_prefix(url) {
-    if (url.startsWith("http://"))
-        url = url.substr(7);
-    else if (url.startsWith("https://"))
-        url = url.substr(8);
-    return url;
-}
+// function remove_url_prefix(url) {
+//   if (url.startsWith("http://"))
+//       url = url.substr(7);
+//   else if (url.startsWith("https://"))
+//       url = url.substr(8);
+//   return url;
+// }

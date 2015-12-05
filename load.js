@@ -1,20 +1,22 @@
-console.log("here first");
+console.log('Chome Extension started!', window.location.href);
 
+// Listens for messages
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    // if ( request.message === "clicked_browser_action" ) {
-      window.localStorage[request.tabId] = window.location.href;
-      console.log('here third', window.localStorage[request.tabId]);
-      var dom = buildDom();
-      chrome.runtime.sendMessage({"message": "open_new_tab", "dom": dom, "tabId" : request.tabId, 'href': window.location.href });
-    // }
+    // When the 'clicked_browser_action' is received
+    if ( request.message === 'clicked_browser_action' ) {
+      // Sends a message 'open_new_tab'
+      chrome.runtime.sendMessage({
+        'message': 'open_new_tab', 
+        'tabId': request.tabId,
+        'url': window.location.href 
+      });
+    } else if ( request.message === 'parsed_url_contents' ) {
+      console.log('DEBUG: parsed_url_contents');
+      console.log('parsed_url_contents');
+      console.log(request.tabId);
+      console.log(request.url);
+    }
+
   }
 );
-
-function buildDom() {
-  return ["future dom array"];
-}
-
-// var dom = buildDom();
-// console.log(dom, chrome.runtime);
-// chrome.runtime.sendMessage({"message": "open_new_tab", "dom": dom});

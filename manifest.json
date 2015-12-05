@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "Takes an article and displays it with nicer typography",
   "permissions": [
-    "tabs", "<all_urls>"
+    "tabs", "<all_urls>",
+    "debugger"
   ],
   "manifest_version": 2,
   "browser_action": {
@@ -16,6 +17,6 @@
       "run_at":  "document_end"
     }
   ],
-  "background": { "scripts" : ["background.js"]},
+  "background": { "scripts" : ["config.js", "background.js"]},
   "minimum_chrome_version": "26"
 }

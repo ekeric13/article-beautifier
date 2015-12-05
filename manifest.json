@@ -1,0 +1,21 @@
+{
+  "name": "Article Beautifuer",
+  "version": "0.0.1",
+  "description": "Takes an article and displays it with nicer typography",
+  "permissions": [
+    "tabs", "<all_urls>"
+  ],
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["load.js"],
+      "run_at":  "document_end"
+    }
+  ],
+  "background": { "scripts" : ["background.js"]},
+  "minimum_chrome_version": "26"
+}

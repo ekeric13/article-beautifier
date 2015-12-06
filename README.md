@@ -1,6 +1,6 @@
 # Article Beautifier
 
-> A Chrome Extension to strip away all the fluff and advertisements on a news article site so that you can focus and enjoy the article the way it was meant to be presented: distraction-free and elegant.
+> A Chrome Extension to strip away all the fluff and advertisements on a news article site so that you can focus and enjoy the article the way it was meant to be enjoyed: simple and distraction-free. Explore our three themes (Medium, Facebook, and Grantland) to make the best out of your reading experience!
 
 ## Team
 
@@ -18,7 +18,7 @@
 
 ## Usage
 
-> After having the Chrome Extension installed, go to any news article site and hit the Article Beautifier icon to open a new tab with your article beautified!
+> After having the Chrome Extension installed, go to any news article site and hit the Article Beautifier icon to open a new tab with your article beautified! Click on the buttons in the top right corner to switch between themes. 
 
 ## Requirements
 
@@ -28,6 +28,8 @@
 
 ### Running Locally on Chrome
 
+1. In the root folder, create a `config.js` 
+1. Add to config a valid Embedly Extract API key
 1. Open up Google Chrome
 1. Navigate to the Extensions Settings page
 1. Click on 'Load unpacked extension...'

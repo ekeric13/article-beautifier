@@ -1,3 +1,5 @@
+/* Grantland Styles */
+
 body {
   background: #fff;
   font-size: 16px;
@@ -31,4 +33,17 @@ p {
 a {
   color: #cd251f;
   text-decoration: none;
+}
+
+@media (max-width: 1300px) {
+  .button-container {
+    display: none;
+  }
+}
+
+@media (max-width: 725px) {
+  #beautified {
+    width: 100%;
+    padding: 0 30px;
+  }
 }

@@ -41,6 +41,20 @@ $('.fb-styles').on('click', function() {
   }
 });
 
+$('.grantland-styles').on('click', function() {
+
+  if ( $('link')[1].getAttribute('href') === "styles3.css" ) {
+
+  } else {
+    $('link')[1].remove();
+    var fileref = document.createElement("link");
+    fileref.setAttribute("rel", "stylesheet");
+    fileref.setAttribute("type", "text/css");
+    fileref.setAttribute("href", 'styles3.css');
+    document.getElementsByTagName("head")[0].appendChild(fileref);
+  }
+});
+
 // ask_page_data();
 
 

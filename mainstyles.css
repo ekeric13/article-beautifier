@@ -8,6 +8,7 @@
   position: absolute;
   top: 20px;
   right: 20px;
+  width: 200px;
 }
 
 .button-container button {
@@ -43,8 +44,9 @@
   border-radius: 0;
   box-shadow: none;
   display: inline-block;
-  margin: 0 !important;
-  margin-left: -1px !important;
+  margin-left: 5px;
+  /*margin: 0 !important;*/
+  /*margin-left: -1px !important;*/
   position: relative;
   font-size: 12px;
   line-height: 26px;
@@ -56,10 +58,33 @@
   border: 1px solid;
   -webkit-font-smoothing: antialiased;
   font-weight: bold;
-  position: relative;
+  /*position: relative;*/
   text-align: center;
-  vertical-align: middle;
+  /*vertical-align: middle;*/
   cursor: pointer;
+}
+
+.grantland-styles {
+  padding: .54545em 0;
+  background: #e2dad4;
+  float: none;
+  width: 125px;
+  /*vertical-align: middle;*/
+  text-transform: uppercase;
+  letter-spacing: .0625em;
+  text-align: center;
+  border: none;
+  font-size: 10px;
+  padding: .5em;
+  color: black;
+  font-weight: 500;
+  color: #cd251f;
+  cursor: pointer;
+    margin-top: 5px;
+}
+
+.grantland-styles:hover {
+  text-decoration: underline;
 }
 
 

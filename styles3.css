@@ -1,0 +1,34 @@
+body {
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.3;
+  font-family: "Balto Web", HelveticaNeue,Helvetica,Arial,sans-serif;
+  -webkit-text-size-adjust: 100%;
+  color: #000;
+  min-width: 300px!important;
+  color: rgb(0, 0, 0);
+}
+
+#beautified {
+  max-width: 54rem;
+  margin: 0 auto;
+}
+
+#beautified > div {
+  float: left;
+  width: 100%;
+  max-width: calc(100% - 20.5625em - 1px);
+  margin-right: 20.5625em;
+  padding-right: 1.25em;
+}
+
+p {
+  margin-bottom: 1.25em;
+    line-height: 1.7em;
+    font-family: "Harriet Text",Georgia,Times,"Times New Roman",serif;
+}
+
+a {
+  color: #cd251f;
+  text-decoration: none;
+}

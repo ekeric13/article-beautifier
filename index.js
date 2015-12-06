@@ -9,19 +9,8 @@ function ask_page_data() {
   var html = '<h1>' + content.title + '</h1>';
   html += content.content; 
   // html += '</body></html>';
-  $('#parsed').html(html);
-  var allImages = $('img');
-  var contentWidth = 700;
-  allImages.on('load', function() {
-    for (var i = 0; i < allImages.length; i++) {
-      var image = allImages[i];
-      var imageWidth = image.clientWidth;
-      var imageWidthFinal = ( (imageWidth-contentWidth) /2) + "px";
-      // $(image).css({'right': imageWidthFinal});
-      image.style.right = imageWidthFinal;
-    }
-
-  });
+  $('#beautified').html(html);
+  
   
 }
 
@@ -52,7 +41,7 @@ $('.fb-styles').on('click', function() {
   }
 });
 
-ask_page_data();
+// ask_page_data();
 
 
 // function data_received(resp) {
@@ -67,3 +56,34 @@ ask_page_data();
 //       url = url.substr(8);
 //   return url;
 // }
+// Listens for messages
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  // When the 'on_new_tab' is received
+  if ( request.message === 'on_new_tab' ) {
+    // Make a request to the Embedly Extract API
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://api.embed.ly/1/extract?key=' + request.key + '&url=' + request.url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() { 
+      // Inject the new content
+      var content = JSON.parse(xhr.responseText);
+      $('title').html(content.title);
+      var html = '<h1>' + content.title + '</h1>';
+      html += content.content; 
+      $('#beautified').html(html);
+      var allImages = $('img');
+      var contentWidth = 700;
+      allImages.on('load', function() {
+        for (var i = 0; i < allImages.length; i++) {
+          var image = allImages[i];
+          var imageWidth = image.clientWidth;
+          var imageWidthFinal = ( (imageWidth-contentWidth) /2) + "px";
+          // $(image).css({'right': imageWidthFinal});
+          image.style.right = imageWidthFinal;
+        }
+
+      });
+    };
+    xhr.send();
+  }
+});

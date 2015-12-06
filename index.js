@@ -1,3 +1,26 @@
+// Inject the new content
+function injectHtml () {
+  if (window.localStorage['embedlyContent'] !== '') {
+    var content = JSON.parse(window.localStorage['embedlyContent']);
+    $('title').html(content.title);
+    var html = '<h1>' + content.title + '</h1>';
+    html += content.content; 
+    $('#beautified').html(html);
+    var allImages = $('img');
+    var contentWidth = 700;
+    allImages.on('load', function() {
+      for (var i = 0; i < allImages.length; i++) {
+        var image = allImages[i];
+        var imageWidth = image.clientWidth;
+        var imageWidthFinal = ( (imageWidth-contentWidth) /2) + "px";
+        // $(image).css({'right': imageWidthFinal});
+        image.style.right = imageWidthFinal;
+      }
+
+    });   
+  }
+}
+
 $('.medium-styles').on('click', function() {
   if ( $('link')[1].getAttribute('href') === "styles.css" ) {
 
@@ -43,27 +66,14 @@ $('.grantland-styles').on('click', function() {
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   // When the 'on_new_tab' is received
   if ( request.message === 'on_new_tab' ) {
-      // Inject the new content
-      console.log(request);
-      var content = JSON.parse(request.content);
-      $('title').html(content.title);
-      var html = '<h1>' + content.title + '</h1>';
-      html += content.content; 
-      $('#beautified').html(html);
-      var allImages = $('img');
-      var contentWidth = 700;
-      allImages.on('load', function() {
-        for (var i = 0; i < allImages.length; i++) {
-          var image = allImages[i];
-          var imageWidth = image.clientWidth;
-          var imageWidthFinal = ( (imageWidth-contentWidth) /2) + "px";
-          // $(image).css({'right': imageWidthFinal});
-          image.style.right = imageWidthFinal;
-        }
-
-      });
+    // Saves to local storage for refresh
+    window.localStorage['embedlyContent'] = request.content;
+    // Inject the new content
+    injectHtml();
   }
 });
+
+injectHtml();
 
 // Listens for messages (Having request in load.js instead of background.js)
 // chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
